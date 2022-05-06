@@ -21,6 +21,8 @@ typedef struct{
 
 void CreateStack_Random(LinkStack *S, int L_size){
 
+    S->count=0;
+
     for(int i=0; i<L_size; i++){
 
         LinkStack_ptr s=(LinkStack_ptr)malloc(sizeof(StackNode));
@@ -58,7 +60,8 @@ void StackPush(LinkStack *S, datatype value){
 
 void StackPop(LinkStack *S){
 
-    LinkStack_ptr temp;
+    LinkStack_ptr temp=(LinkStack_ptr)malloc(sizeof(StackNode));
+
     if(IsEmpty(S))
         exit(0);
 
@@ -71,18 +74,26 @@ void StackPop(LinkStack *S){
 
 int StackLength(LinkStack *S){
 
-    return (int)(S->top+1);
+    return S->count;
 }
 
 void StackTarvarse(LinkStack *S){
 
-    LinkStack_ptr temp;
+    LinkStack_ptr temp=(LinkStack_ptr)malloc(sizeof(StackNode));
+    datatype* temp_array=(datatype*)malloc(S->count*sizeof(datatype));
 
     temp=S->top;
-
-    for(int i=0; i<(int)S->top-1; i++){
-        printf("%d ",temp->val);
+    
+    for(int i=0; i<S->count; i++){
+        temp_array[S->count-i-1]=temp->val;
         temp=temp->next;
     }
-    printf("\n");
+
+    for(int i=0; i<S->count; i++){
+        printf("%d ",temp_array[i]);
+    }
+
+    free(temp_array);
+    
+    printf("\nStack number = %d\n",S->count);
 }
