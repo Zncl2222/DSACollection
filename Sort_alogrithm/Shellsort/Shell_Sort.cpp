@@ -7,7 +7,7 @@ template<class T>
 void Shell_Sort(T data[], int len) {
     for(int gap = len / 2; gap > 0; gap /= 2) {
         for(int i = gap; i < len; i++) {
-            int value = data[i];
+            T value = data[i];
             int j;
             for(j = i; j >= gap && data[j-gap] > value; j -= gap) {
                 data[j] = data[j-gap];
@@ -29,7 +29,7 @@ template<class T>
 void Shell_Sort_STL(vector<T>& array) {
     for(int gap = array.size() / 2; gap > 0; gap /= 2) {
         for(int i = gap; i < array.size(); i++) {
-            int value = array[i];
+            T value = array[i];
             int j;
             for(j = i; j >= gap && array[j-gap] > value; j -= gap) {
                 array[j] = array[j-gap];
@@ -51,6 +51,7 @@ int main() {
 
     int array[10] = {1, 5, 6, 7, 8, 5, 5, 2, 1, 4};
     vector<int> array_v{9, 2, 3, 6, 8, 5, 5, 1, 2, 4, 9};
+    vector<float> array_v2{1.2, 52.1, 664.33, -556.1, 5, 4, 4.5};
     cout << "Before" << endl;
     Print_Array(array, 10);
     Shell_Sort(array, 10);
@@ -62,5 +63,4 @@ int main() {
     Shell_Sort_STL(array_v);
     cout << "After(STL)" << endl;
     Print_Array_STL(array_v);
-
 }
