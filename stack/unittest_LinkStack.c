@@ -1,29 +1,26 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include "Link_stack.h"
+#include <stdio.h>
+#include <stdlib.h>
 
+#include "Link_stack.h"
 
-int main(){
-
+int main() {
     LinkStack S;
 
-    CreateStack_Random(&S,5);
+    CreateStack_Random(&S, 5);
 
     StackTarvarse(&S);
 
-    for(int i=0; i<5; i++){
-        
-        StackPush(&S,i*i);
+    for (int i = 0; i < 5; i++) {
+        StackPush(&S, i * i);
     }
-    
+
     StackTarvarse(&S);
 
     StackPop(&S);
 
     StackTarvarse(&S);
-    
+
     system("Pause");
 
     return 0;
-
 }
