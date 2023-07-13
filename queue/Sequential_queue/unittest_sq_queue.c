@@ -1,16 +1,16 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include "Sequential_queue.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int main(){
+#include "Sequential_queue.h"
 
+int main() {
     SqQueue q;
-    
+
     SqQueue_Init(&q);
 
     printf("\nQueue push\n");
-    for(int i = 0; i < 6; i++){
-        SqQueue_Push(&q, i*2);
+    for (int i = 0; i < 6; i++) {
+        SqQueue_Push(&q, i * 2);
         SqQueue_Getfront(&q);
         SqQueue_Getrear(&q);
     }
@@ -20,7 +20,7 @@ int main(){
     SqQueue_Getrear(&q);
 
     printf("\nQueue pop\n");
-    for(int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         SqQueue_Pop(&q);
     }
     SqQueue_Traverse(&q);
@@ -28,7 +28,7 @@ int main(){
     SqQueue_Getrear(&q);
 
     printf("\nQueue pop\n");
-    for(int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         SqQueue_Pop(&q);
     }
 
@@ -38,8 +38,8 @@ int main(){
     SqQueue_Length(&q);
 
     printf("\nQueue push\n");
-    for(int i = 0; i < 5; i++){
-        SqQueue_Push(&q, i*15);
+    for (int i = 0; i < 5; i++) {
+        SqQueue_Push(&q, i * 15);
     }
     SqQueue_Traverse(&q);
     SqQueue_Getfront(&q);
