@@ -1,0 +1,24 @@
+fail_fast: false
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: debug-statements
+-   repo: https://github.com/asottile/setup-cfg-fmt
+    rev: v2.2.0
+    hooks:
+    -   id: setup-cfg-fmt
+        args: [--include-version-classifiers]
+-   repo: https://github.com/pocc/pre-commit-hooks
+    rev: v1.3.5
+    hooks:
+      - id: cpplint
+        args: [
+            "--filter=-readability/casting,-runtime/threadsafe_fn,-build/include_what_you_use,-runtime/int",
+            "--linelength=100",
+            "--exclude=uc_sgsim/c_core/lib/*",
+            "--exclude=uc_sgsim/c_core/tests/utest.h"
+        ]
