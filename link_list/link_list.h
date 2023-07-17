@@ -1,3 +1,7 @@
+// Copyright 2022 Zncl2222
+#ifndef LINK_LIST_LINK_LIST_H_
+#define LINK_LIST_LINK_LIST_H_
+
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +25,7 @@ void CreateLinkList(struct LinkList **L, int L_size, datatype init_value,
         temp = (struct LinkList *)malloc(sizeof(LinkNode));
 
         if (random_value == true)
-            temp->val = rand() % 10 + 1;
+            temp->val = rand() % 10 + 1; // NOLINT
         else
             temp->val = init_value;
 
@@ -148,3 +152,5 @@ void Traverse(struct LinkList **L) {
     }
     printf("\n");
 }
+
+#endif  // LINK_LIST_LINK_LIST_H_

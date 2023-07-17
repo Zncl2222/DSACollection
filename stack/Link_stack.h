@@ -1,3 +1,7 @@
+// Copyright 2022 Zncl2222
+#ifndef STACK_LINK_STACK_H_
+#define STACK_LINK_STACK_H_
+
 #include <malloc.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -8,13 +12,11 @@ typedef int datatype;
 typedef struct StackNode {
     datatype val;
     struct StackNode *next;
-
 } StackNode, *LinkStack_ptr;
 
 typedef struct {
     LinkStack_ptr top;
     int count;
-
 } LinkStack;
 
 void CreateStack_Random(LinkStack *S, int L_size) {
@@ -22,7 +24,7 @@ void CreateStack_Random(LinkStack *S, int L_size) {
 
     for (int i = 0; i < L_size; i++) {
         LinkStack_ptr s = (LinkStack_ptr)malloc(sizeof(StackNode));
-        s->val = rand() % 100 + 1;
+        s->val = rand() % 100 + 1;  // NOLINT
         s->next = S->top;
         S->top = s;
         S->count++;
@@ -78,3 +80,5 @@ void StackTarvarse(LinkStack *S) {
 
     printf("\nStack number = %d\n", S->count);
 }
+
+#endif  // STACK_LINK_STACK_H_

@@ -1,3 +1,7 @@
+// Copyright 2022 Zncl2222
+#ifndef SORTING_QUICK_SORT_QUICKSORT_H_
+#define SORTING_QUICK_SORT_QUICKSORT_H_
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,7 +23,7 @@ int Partition(int* array, int front, int end) {
         while (front < end && array[front] <= pivotkey) {
             front++;
         }
-        swap(&array[end], &array[front]);
+        swap(&array[end], &array[front]);  //  NOLINT
     }
 
     return front;
@@ -46,3 +50,5 @@ int test(int a, int b) {
     printf("heheh");
     return a + b;
 }
+
+#endif  // SORTING_QUICK_SORT_QUICKSORT_H_
