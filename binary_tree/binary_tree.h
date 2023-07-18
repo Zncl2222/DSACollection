@@ -1,3 +1,7 @@
+// Copyright 2022 Zncl2222
+#ifndef BINARY_TREE_BINARY_TREE_H_
+#define BINARY_TREE_BINARY_TREE_H_
+
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +14,6 @@ struct TreeNode {
     datatype val;
     struct TreeNode* left;
     struct TreeNode* right;
-
 } TreeNode;
 
 struct TreeNode* create_binary_tree() {
@@ -56,3 +59,5 @@ void postordertraverse(struct TreeNode* root) {
     preordertraverse(root->right);
     printf("Value = %d\n", root->val);
 }
+
+#endif  // BINARY_TREE_BINARY_TREE_H_

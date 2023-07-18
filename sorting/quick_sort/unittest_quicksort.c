@@ -1,3 +1,5 @@
+// Copyright 2022 Zncl2222
+
 #include <stdio.h>
 
 #include "quicksort.h"

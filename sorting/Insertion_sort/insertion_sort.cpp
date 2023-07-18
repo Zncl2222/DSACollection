@@ -1,8 +1,12 @@
+// Copyright 2022 Zncl2222
+
 #include <cstdio>
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using std::cout;
+using std::vector;
+using std::endl;
 
 void Insertion_Sort(int data[], int len) {
     for (int i = 1; i < len; i++) {
@@ -24,7 +28,7 @@ void Print_Array(int data[], int len) {
     cout << endl;
 }
 
-void Insertion_Sort_STL(vector<int>& array) {
+void Insertion_Sort_STL(vector<int>& array) {  // NOLINT
     for (int i = 1; i < array.size(); i++) {
         int tmp = array[i];
         int j = i - 1;

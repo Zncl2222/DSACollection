@@ -1,3 +1,7 @@
+// Copyright 2022 Zncl2222
+#ifndef STACK_SEQUENTIAL_STACK_H_
+#define STACK_SEQUENTIAL_STACK_H_
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +17,7 @@ struct Stack {
 
 void CreateStack_Random(struct Stack *S) {
     for (int i = 0; i < MAX_SIZE; i++) {
-        S->data[i] = rand() % 100 + 1;
+        S->data[i] = rand() % 100 + 1;  // NOLINT
     }
     S->top = MAX_SIZE - 1;
 }
@@ -30,31 +34,33 @@ bool IsEmpty(struct Stack *S) {
 datatype GetTop(struct Stack *S) { return S->top; }
 
 void StackPush(struct Stack *S, datatype value) {
-    if (S->top == MAX_SIZE - 1)
+    if (S->top == MAX_SIZE - 1) {
         printf("ERROR: Stack is full\n");
-    else {
+    } else {
         S->top++;
         S->data[S->top] = value;
     }
 }
 
 void StackPop(struct Stack *S) {
-    if (S->top == -1)
+    if (S->top == -1) {
         printf("ERROR\n");
-    else
+    } else {
         S->top--;
+    }
 }
 
 int StackLength(struct Stack *S) { return S->top; }
 
 void StackTarvarse(struct Stack *S) {
-    if (S->top == -1)
+    if (S->top == -1) {
         printf("Stack is Empty\n");
-
-    else {
+    } else {
         for (int i = 0; i < S->top; i++) {
             printf("%d ", S->data[i]);
         }
         printf("\nThe idx of top is : %d\n", S->top);
     }
 }
+
+#endif  // STACK_SEQUENTIAL_STACK_H_

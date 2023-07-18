@@ -1,7 +1,11 @@
+// Copyright 2022 Zncl2222
+
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using std::cout;
+using std::vector;
+using std::endl;
 
 template <class T>
 void Shell_Sort(T data[], int len) {
@@ -26,7 +30,7 @@ void Print_Array(T data[], int len) {
 }
 
 template <class T>
-void Shell_Sort_STL(vector<T>& array) {
+void Shell_Sort_STL(vector<T>& array) {  // NOLINT
     for (int gap = array.size() / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < array.size(); i++) {
             T value = array[i];

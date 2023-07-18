@@ -1,3 +1,7 @@
+// Copyright 2022 Zncl2222
+#ifndef QUEUE_LINK_QUEUE_LINK_QUEUE_H_
+#define QUEUE_LINK_QUEUE_LINK_QUEUE_H_
+
 #include <stdio.h>
 
 typedef int datatype;
@@ -5,7 +9,6 @@ typedef int datatype;
 typedef struct Queue_Node {
     datatype data;
     struct Queue_Node* next;
-
 } QNode, *QueuePtr;
 
 typedef struct {
@@ -91,3 +94,5 @@ void LkQueue_Traverse(LinkQueue* q) {
     }
     printf("\n\n");
 }
+
+#endif  // QUEUE_LINK_QUEUE_LINK_QUEUE_H_

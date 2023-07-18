@@ -1,3 +1,5 @@
+// Copyright 2022 Zncl2222
+
 #include <malloc.h>
 #include <stdbool.h>
 #include <stdio.h>

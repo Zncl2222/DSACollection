@@ -1,4 +1,6 @@
-#include "BinaryTree.h"
+// Copyright 2022 Zncl2222
+
+#include "binary_tree.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +14,5 @@ int main() {
     inordertraverse(root);
 
     system("Pause");
-
     return 0;
 }

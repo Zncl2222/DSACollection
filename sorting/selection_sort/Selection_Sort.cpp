@@ -1,7 +1,10 @@
+// Copyright 2022 Zncl2222
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using std::cout;
+using std::vector;
+using std::endl;
 
 template <class T>
 void array_swap(T& a, T& b) {
@@ -33,7 +36,7 @@ void Print_Array(T data[], int len) {
 }
 
 template <class T>
-void Selection_Sort_STL(vector<T>& array) {
+void Selection_Sort_STL(vector<T>& array) {  // NOLINT
     int min_index;
     for (int i = 0; i < array.size() - 1; i++) {
         min_index = i;
@@ -47,7 +50,7 @@ void Selection_Sort_STL(vector<T>& array) {
 }
 
 template <class T>
-void Print_Array(vector<T> array) {
+void Print_Array(const vector<T> array) {
     for (int i = 0; i < array.size(); i++) {
         cout << array[i] << " ";
     }
