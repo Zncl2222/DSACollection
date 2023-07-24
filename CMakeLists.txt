@@ -3,7 +3,7 @@ project(DSA)
 
 # Set the source files for your project
 set(SOURCES
-    LinkList/unittest_LinkList.cpp
+    link_list/unittest_LinkList.cpp
 )
 set(PROJECT_NAME
     DSA
