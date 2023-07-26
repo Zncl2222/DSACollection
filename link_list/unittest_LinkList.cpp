@@ -1,9 +1,12 @@
+// Copyright 2022 Zncl2222
+
 #include <gtest/gtest.h>
-#include "LinkList.h"
+#include "link_list.h"
+
 
 // Test fixture for the LinkList operations
 class LinkListTest : public ::testing::Test {
-protected:
+ protected:
     struct LinkList* list;
 
     void SetUp() override {
