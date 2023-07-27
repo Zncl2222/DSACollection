@@ -6,9 +6,18 @@
 
 // Test fixture for the LinkList operations
 class LinkListTest : public ::testing::Test {
+ public:
+    void CleanUpLinkList() {
+        struct LinkList* temp = (*list)->next;
+        while (temp != NULL) {
+            struct LinkList* to_free = temp;
+            temp = temp->next;
+            free(to_free);
+        }
+        free(*list);
+    }
  protected:
     struct LinkList* list;
-
     void SetUp() override {
         list = nullptr;
     }
@@ -85,5 +94,7 @@ TEST_F(LinkListTest, TraverseTest) {
 // Run the tests
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    int res = RUN_ALL_TESTS();
+    LinkList::CleanUpLinkList();
+    return res;
 }
