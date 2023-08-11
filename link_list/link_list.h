@@ -38,17 +38,14 @@ void CreateLinkList(struct LinkList **L, int L_size, datatype init_value,
 
 void DeleteLinkList(struct LinkList **L) {
     struct LinkList *a, *b;
-    a = (*L)->next;
+    a = *L;
 
     while (a != NULL) {
         b = a->next;
         free(a);
-        b = a;
+        a = b;
     }
-
-    (*L)->next = NULL;
-
-    printf("Link list deleted.");
+    *L = NULL;
 }
 
 void InsertLinkNode(struct LinkList **L, int target_idx,
@@ -64,7 +61,8 @@ void InsertLinkNode(struct LinkList **L, int target_idx,
     }
 
     if (a == NULL || curr_idx > target_idx + 1) {
-        printf("ERROR: Out of index");
+        printf("ERROR: Out of index\n");
+        return;
     } else {
         b = (struct LinkList *)malloc(sizeof(LinkNode));
         b->val = target_value;
@@ -126,14 +124,17 @@ datatype Get_Elementindex(struct LinkList **L, datatype target_value) {
     struct LinkList *temp;
     int target_idx = 0;
 
-    temp = *L;
+    temp = (*L)->next;
 
-    while (temp->next != NULL && temp->val != target_value) {
+    while (temp != NULL) {
+        if (temp->val == target_value) {
+            return target_idx;
+        }
         temp = temp->next;
         target_idx++;
     }
 
-    return target_idx;
+    return -1;
 }
 
 void Traverse(struct LinkList **L) {
@@ -141,12 +142,10 @@ void Traverse(struct LinkList **L) {
     int Len;
     temp = (*L)->next;
 
-    temp = temp->next;
-
     Len = Length(L);
 
     printf("DataValue=\n");
-    for (int i = 0; i < Len - 1; i++) {
+    for (int i = 0; i < Len; i++) {
         printf("%d ", temp->val);
         temp = temp->next;
     }
