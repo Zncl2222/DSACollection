@@ -27,6 +27,7 @@ include_directories(link_list)
 add_executable(
     unittest
     link_list/unittest_LinkList.cpp
+    binary_tree/unittest_binary_tree.cpp
 )
 
 # Link Google Test and your project's code
