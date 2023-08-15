@@ -2,38 +2,40 @@
 #ifndef BINARY_TREE_BINARY_TREE_H_
 #define BINARY_TREE_BINARY_TREE_H_
 
-#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef int datatype;
-typedef int (*func)(int);
-int idx = 0;
 
 struct TreeNode {
     datatype val;
     struct TreeNode* left;
     struct TreeNode* right;
-} TreeNode;
+};
 
-struct TreeNode* create_binary_tree() {
-    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-    int val;
-    printf("Input the value (-1 = NULL):\n");
-    scanf(" %d", &val);
-
-    if (val == -1) {
-        root = NULL;
-    } else {
-        root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-
-        root->val = val;
-        printf("Valueaa = %d\n", root->val);
-        root->left = create_binary_tree();
-        root->right = create_binary_tree();
+struct TreeNode* create_binary_tree_recursive(datatype arr[], int idx, int size) {
+    if (idx >= size || arr[idx] == -1) {
+        return NULL;
     }
 
+    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    root->val = arr[idx];
+    root->left = create_binary_tree_recursive(arr, 2 * idx + 1, size);
+    root->right = create_binary_tree_recursive(arr, 2 * idx + 2, size);
+
     return root;
+}
+
+struct TreeNode* create_binary_tree(datatype arr[], int size) {
+    return create_binary_tree_recursive(arr, 0, size);
+}
+
+void free_binary_tree(struct TreeNode* root) {
+    if (root == NULL) return;
+
+    free_binary_tree(root->left);
+    free_binary_tree(root->right);
+    free(root);
 }
 
 void preordertraverse(struct TreeNode* root) {
@@ -47,16 +49,16 @@ void preordertraverse(struct TreeNode* root) {
 void inordertraverse(struct TreeNode* root) {
     if (root == NULL) return;
 
-    preordertraverse(root->left);
+    inordertraverse(root->left);
     printf("Value = %d\n", root->val);
-    preordertraverse(root->right);
+    inordertraverse(root->right);
 }
 
 void postordertraverse(struct TreeNode* root) {
     if (root == NULL) return;
 
-    preordertraverse(root->left);
-    preordertraverse(root->right);
+    postordertraverse(root->left);
+    postordertraverse(root->right);
     printf("Value = %d\n", root->val);
 }
 
