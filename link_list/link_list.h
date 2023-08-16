@@ -14,7 +14,7 @@ struct LinkList {
     struct LinkList *next;
 } LinkNode;
 
-void CreateLinkList(struct LinkList **L, int L_size, datatype init_value,
+void create_link_list(struct LinkList **L, int L_size, datatype init_value,
                     bool random_value) {
     struct LinkList *temp, *rear;
     srand(time(0));
@@ -36,7 +36,7 @@ void CreateLinkList(struct LinkList **L, int L_size, datatype init_value,
     rear->next = NULL;
 }
 
-void DeleteLinkList(struct LinkList **L) {
+void delete_link_list(struct LinkList **L) {
     struct LinkList *a, *b;
     a = *L;
 
@@ -48,7 +48,7 @@ void DeleteLinkList(struct LinkList **L) {
     *L = NULL;
 }
 
-void InsertLinkNode(struct LinkList **L, int target_idx,
+void insert_link_node(struct LinkList **L, int target_idx,
                     datatype target_value) {
     struct LinkList *a, *b;
     int curr_idx = 1;
@@ -71,7 +71,7 @@ void InsertLinkNode(struct LinkList **L, int target_idx,
     }
 }
 
-void DeleteLinkNode(struct LinkList **L, int target_idx) {
+void delete_link_node(struct LinkList **L, int target_idx) {
     struct LinkList *a, *b;
     int curr_idx = 1;
 
@@ -91,7 +91,7 @@ void DeleteLinkNode(struct LinkList **L, int target_idx) {
     }
 }
 
-int Length(struct LinkList **L) {
+int link_list_length(struct LinkList **L) {
     struct LinkList *temp;
     int count = 0;
 
@@ -105,7 +105,7 @@ int Length(struct LinkList **L) {
     return count;
 }
 
-datatype Get_ElementValue(struct LinkList **L, datatype target_idx) {
+datatype get_element_val(struct LinkList **L, datatype target_idx) {
     struct LinkList *temp;
     int target_value;
 
@@ -120,7 +120,7 @@ datatype Get_ElementValue(struct LinkList **L, datatype target_idx) {
     return target_value;
 }
 
-datatype Get_Elementindex(struct LinkList **L, datatype target_value) {
+datatype get_element_idx(struct LinkList **L, datatype target_value) {
     struct LinkList *temp;
     int target_idx = 0;
 
@@ -137,12 +137,12 @@ datatype Get_Elementindex(struct LinkList **L, datatype target_value) {
     return -1;
 }
 
-void Traverse(struct LinkList **L) {
+void traverse(struct LinkList **L) {
     struct LinkList *temp;
     int Len;
     temp = (*L)->next;
 
-    Len = Length(L);
+    Len = link_list_length(L);
 
     printf("DataValue=\n");
     for (int i = 0; i < Len; i++) {
