@@ -15,61 +15,61 @@ class LinkListTest : public ::testing::Test {
 
     // TearDown will be called after each test case
     void TearDown() override {
-        DeleteLinkList(&list);
+        delete_link_list(&list);
     }
 };
 
-// Test case for CreateLinkList function
-TEST_F(LinkListTest, CreateLinkListTest) {
-    CreateLinkList(&list, 5, 0, false);
-    EXPECT_EQ(6, Length(&list));
+// Test case for create_link_list function
+TEST_F(LinkListTest, create_link_list_test) {
+    create_link_list(&list, 5, 0, false);
+    EXPECT_EQ(6, link_list_length(&list));
 }
 
-// Test case for InsertLinkNode function
-TEST_F(LinkListTest, InsertLinkNodeTest) {
-    CreateLinkList(&list, 3, 0, false);
-    InsertLinkNode(&list, 2, 5);
+// Test case for insert_link_node function
+TEST_F(LinkListTest, insert_link_node_test) {
+    create_link_list(&list, 3, 0, false);
+    insert_link_node(&list, 2, 5);
 
-    EXPECT_EQ(0, Get_ElementValue(&list, 2));
+    EXPECT_EQ(0, get_element_val(&list, 2));
 }
 
-// Test case for DeleteLinkNode function
-TEST_F(LinkListTest, DeleteLinkNodeTest) {
-    CreateLinkList(&list, 3, 0, false);
-    DeleteLinkNode(&list, 2);
+// Test case for delete_link_node function
+TEST_F(LinkListTest, delete_link_node_test) {
+    create_link_list(&list, 3, 0, false);
+    delete_link_node(&list, 2);
 
-    EXPECT_EQ(3, Length(&list));
+    EXPECT_EQ(3, link_list_length(&list));
 }
 
-// Test case for Get_ElementValue function
-TEST_F(LinkListTest, Get_ElementValueTest) {
-    CreateLinkList(&list, 3, 0, false);
+// Test case for get_element_val function
+TEST_F(LinkListTest, get_element_val_test) {
+    create_link_list(&list, 3, 0, false);
 
-    EXPECT_EQ(0, Get_ElementValue(&list, 2));
+    EXPECT_EQ(0, get_element_val(&list, 2));
 }
 
-// Test case for Get_Elementindex function
-TEST_F(LinkListTest, Get_ElementindexTest) {
-    CreateLinkList(&list, 3, 5, false);
+// Test case for get_element_idx function
+TEST_F(LinkListTest, get_element_idx_test) {
+    create_link_list(&list, 3, 5, false);
 
-    EXPECT_EQ(0, Get_Elementindex(&list, 5));
-    EXPECT_EQ(-1, Get_Elementindex(&list, 10));
+    EXPECT_EQ(0, get_element_idx(&list, 5));
+    EXPECT_EQ(-1, get_element_idx(&list, 10));
 }
 
-// Test case for Length function
-TEST_F(LinkListTest, LengthTest) {
-    CreateLinkList(&list, 5, 0, false);
+// Test case for link_list_length function
+TEST_F(LinkListTest, link_list_length_test) {
+    create_link_list(&list, 5, 0, false);
 
-    EXPECT_EQ(6, Length(&list));
+    EXPECT_EQ(6, link_list_length(&list));
 }
 
 // Test case for Traverse function
-TEST_F(LinkListTest, TraverseTest) {
-    CreateLinkList(&list, 3, 0, false);
+TEST_F(LinkListTest, traverse_test) {
+    create_link_list(&list, 3, 0, false);
 
     // Redirect stdout to a string stream for testing
     testing::internal::CaptureStdout();
-    Traverse(&list);
+    traverse(&list);
     std::string output = testing::internal::GetCapturedStdout();
 
     // Check the output string
