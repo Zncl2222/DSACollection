@@ -11,7 +11,7 @@ typedef int datatype;
 
 typedef struct StackNode {
     datatype val;
-    struct StackNode *next;
+    struct StackNode* next;
 } StackNode, *LinkStack_ptr;
 
 typedef struct {
@@ -19,7 +19,7 @@ typedef struct {
     int count;
 } LinkStack;
 
-void CreateStack_Random(LinkStack *S, int L_size) {
+void create_stack_random(LinkStack* S, int L_size) {
     S->count = 0;
 
     for (int i = 0; i < L_size; i++) {
@@ -31,16 +31,40 @@ void CreateStack_Random(LinkStack *S, int L_size) {
     }
 }
 
-bool IsEmpty(LinkStack *S) {
+bool is_empty(LinkStack* S) {
     if (S->top == NULL)
         return true;
     else
         return false;
 }
 
-datatype GetTop(LinkStack *S) { return (datatype)S->top; }
 
-void StackPush(LinkStack *S, datatype value) {
+void stack_pop(LinkStack* S) {
+    if (is_empty(S))
+        return;
+
+    LinkStack_ptr temp = S->top;
+    S->top = S->top->next;
+    free(temp);
+    S->count--;
+}
+
+
+void delete_stack(LinkStack* S) {
+    while (!is_empty(S)) {
+        stack_pop(S);
+    }
+    free(S);
+}
+
+datatype get_top(LinkStack* S) {
+    if (S->top == NULL) {
+        return -1;
+    }
+    return S->top->val;
+}
+
+void stack_push(LinkStack* S, datatype value) {
     LinkStack_ptr s = (LinkStack_ptr)malloc(sizeof(StackNode));
     s->val = value;
     s->next = S->top;
@@ -48,36 +72,27 @@ void StackPush(LinkStack *S, datatype value) {
     S->count++;
 }
 
-void StackPop(LinkStack *S) {
-    LinkStack_ptr temp = (LinkStack_ptr)malloc(sizeof(StackNode));
+int stack_length(LinkStack* S) { return S->count; }
 
-    if (IsEmpty(S)) exit(0);
+void stack_traverse(LinkStack* S) {
+    if (is_empty(S)) {
+        printf("Stack is empty.\n");
+        return;
+    }
 
-    temp = S->top;
-    S->top = S->top->next;
-    free(temp);
-    S->count--;
-}
-
-int StackLength(LinkStack *S) { return S->count; }
-
-void StackTarvarse(LinkStack *S) {
-    LinkStack_ptr temp = (LinkStack_ptr)malloc(sizeof(StackNode));
-    datatype *temp_array = (datatype *)malloc(S->count * sizeof(datatype));
-
-    temp = S->top;
+    LinkStack_ptr temp = S->top;
+    datatype* temp_array = (datatype*)malloc(S->count * sizeof(datatype));
 
     for (int i = 0; i < S->count; i++) {
-        temp_array[S->count - i - 1] = temp->val;
+        temp_array[i] = temp->val;
         temp = temp->next;
     }
 
-    for (int i = 0; i < S->count; i++) {
+    for (int i = S->count - 1; i >= 0; i--) {
         printf("%d ", temp_array[i]);
     }
 
     free(temp_array);
-
     printf("\nStack number = %d\n", S->count);
 }
 

@@ -15,7 +15,7 @@ struct Stack {
     datatype top;
 } Stack;
 
-void CreateStack_Random(struct Stack *S) {
+void create_stack_random(struct Stack *S) {
     for (int i = 0; i < MAX_SIZE; i++) {
         S->data[i] = rand() % 100 + 1;  // NOLINT
     }
@@ -24,16 +24,16 @@ void CreateStack_Random(struct Stack *S) {
 
 void InitStack(struct Stack *S) { S->top = -1; }
 
-bool IsEmpty(struct Stack *S) {
+bool is_empty(struct Stack *S) {
     if (S->top == -1)
         return true;
     else
         return false;
 }
 
-datatype GetTop(struct Stack *S) { return S->top; }
+datatype get_top(struct Stack *S) { return S->top; }
 
-void StackPush(struct Stack *S, datatype value) {
+void stack_push(struct Stack *S, datatype value) {
     if (S->top == MAX_SIZE - 1) {
         printf("ERROR: Stack is full\n");
     } else {
@@ -42,7 +42,7 @@ void StackPush(struct Stack *S, datatype value) {
     }
 }
 
-void StackPop(struct Stack *S) {
+void stack_pop(struct Stack *S) {
     if (S->top == -1) {
         printf("ERROR\n");
     } else {
@@ -50,9 +50,9 @@ void StackPop(struct Stack *S) {
     }
 }
 
-int StackLength(struct Stack *S) { return S->top; }
+int stack_length(struct Stack *S) { return S->top; }
 
-void StackTarvarse(struct Stack *S) {
+void stack_traverse(struct Stack *S) {
     if (S->top == -1) {
         printf("Stack is Empty\n");
     } else {
