@@ -22,7 +22,7 @@ void create_stack_random(struct Stack *S) {
     S->top = MAX_SIZE - 1;
 }
 
-void InitStack(struct Stack *S) { S->top = -1; }
+void init_stack(struct Stack *S) { S->top = -1; }
 
 bool is_empty(struct Stack *S) {
     if (S->top == -1)
