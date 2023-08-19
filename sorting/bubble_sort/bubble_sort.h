@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef SORTING_BUBBLE_SORT_BUBBLESORT_H_
-#define SORTING_BUBBLE_SORT_BUBBLESORT_H_
+#ifndef SORTING_BUBBLE_SORT_BUBBLE_SORT_H_
+#define SORTING_BUBBLE_SORT_BUBBLE_SORT_H_
 
 #include <stdio.h>
 
@@ -29,4 +29,4 @@ void PrintArray(int* array, int array_size) {
     printf("\n");
 }
 
-#endif  // SORTING_BUBBLE_SORT_BUBBLESORT_H_
+#endif  // SORTING_BUBBLE_SORT_BUBBLE_SORT_H_

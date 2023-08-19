@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef SORTING_HEAP_SORT_HEAPSORT_H_
-#define SORTING_HEAP_SORT_HEAPSORT_H_
+#ifndef SORTING_HEAP_SORT_HEAP_SORT_H_
+#define SORTING_HEAP_SORT_HEAP_SORT_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,4 +45,4 @@ void PrintArray(int* L, int L_size) {
     printf("\n");
 }
 
-#endif  // SORTING_HEAP_SORT_HEAPSORT_H_
+#endif  // SORTING_HEAP_SORT_HEAP_SORT_H_
