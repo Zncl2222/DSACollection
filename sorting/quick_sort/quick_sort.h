@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef SORTING_QUICK_SORT_QUICKSORT_H_
-#define SORTING_QUICK_SORT_QUICKSORT_H_
+#ifndef SORTING_QUICK_SORT_QUICK_SORT_H_
+#define SORTING_QUICK_SORT_QUICK_SORT_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,4 +51,4 @@ int test(int a, int b) {
     return a + b;
 }
 
-#endif  // SORTING_QUICK_SORT_QUICKSORT_H_
+#endif  // SORTING_QUICK_SORT_QUICK_SORT_H_
