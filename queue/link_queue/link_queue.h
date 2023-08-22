@@ -6,22 +6,22 @@
 
 typedef int datatype;
 
-typedef struct Queue_Node {
+typedef struct QueueNode {
     datatype data;
-    struct Queue_Node* next;
+    struct QueueNode* next;
 } QNode, *QueuePtr;
 
 typedef struct {
     QueuePtr front, rear;
 } LinkQueue;
 
-void LkQueue_Init(LinkQueue* q) {
+void lk_queue_init(LinkQueue* q) {
     printf("LkQueue init success\n");
     q->front = q->rear = (QueuePtr)malloc(sizeof(QNode));
     q->front->next = NULL;
 }
 
-void LkQueue_Push(LinkQueue* q, datatype val) {
+void lk_queue_push(LinkQueue* q, datatype val) {
     QueuePtr next_node = (QueuePtr)malloc(sizeof(QNode));
 
     if (!next_node) return;
@@ -33,11 +33,11 @@ void LkQueue_Push(LinkQueue* q, datatype val) {
     q->rear = next_node;
 }
 
-void LkQueue_Pop(LinkQueue* q) {
+void lk_queue_pop(LinkQueue* q) {
     QueuePtr temp;
 
     if (q->front == q->rear) {
-        printf("(LkQueue_Pop) ERROR: Queue is empty\n");
+        printf("(lk_queue_pop) ERROR: Queue is empty\n");
         return;
     }
 
@@ -50,25 +50,32 @@ void LkQueue_Pop(LinkQueue* q) {
     free(temp);
 }
 
-datatype LkQueue_Getfront(LinkQueue* q) {
+void lk_queue_destroy(LinkQueue* q) {
+    while (q->front != q->rear) {
+        lk_queue_pop(q);
+    }
+    free(q->front);
+}
+
+datatype lk_queue_get_front(LinkQueue* q) {
     if (q->front == q->rear) {
-        printf("(LkQueue_Getfront) ERROR: Queue is empty\n");
+        printf("(lk_queue_get_front) ERROR: Queue is empty\n");
         return -9999;
     }
-    printf("(LkQueue_Getfront) Front ptr value %d\n", q->front->next->data);
+    printf("(lk_queue_get_front) Front ptr value %d\n", q->front->next->data);
     return q->front->next->data;
 }
 
-datatype LkQueue_Getrear(LinkQueue* q) {
+datatype lk_queue_get_rear(LinkQueue* q) {
     if (q->front == q->rear) {
-        printf("(LkQueue_Getrear) ERROR: Queue is empty\n");
+        printf("(lk_queue_get_rear) ERROR: Queue is empty\n");
         return -9999;
     }
-    printf("(LkQueue_Getrear) Rear ptr value %d\n", q->rear->data);
+    printf("(lk_queue_get_rear) Rear ptr value %d\n", q->rear->data);
     return q->rear->data;
 }
 
-int LkQueue_Size(LinkQueue* q) {
+int lk_queue_size(LinkQueue* q) {
     QueuePtr temp = q->front;
     int count = 0;
 
@@ -76,13 +83,13 @@ int LkQueue_Size(LinkQueue* q) {
         temp = temp->next;
         count++;
     }
-    printf("(LkQueue_Size) Queue size = %d\n", count);
+    printf("(lk_queue_size) Queue size = %d\n", count);
     return count;
 }
 
-void LkQueue_Traverse(LinkQueue* q) {
+void lk_queue_traverse(LinkQueue* q) {
     if (q->rear == q->front) {
-        printf("(LkQueue_Traverse) ERROR: Queue is empty\n");
+        printf("(lk_queue_traverse) ERROR: Queue is empty\n");
         return;
     }
     QueuePtr temp;
