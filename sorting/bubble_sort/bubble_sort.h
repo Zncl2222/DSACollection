@@ -6,27 +6,10 @@
 
 typedef int datatype;
 
-void swap(datatype* a, datatype* b) {
-    datatype temp = *a;
-    *a = *b;
-    *b = temp;
-}
+void swap(datatype* a, datatype* b);
 
-void b_sort(datatype* array, int array_size) {
-    for (int i = 0; i < array_size; i++) {
-        for (int j = array_size - 1; j > i; j--) {
-            if (array[j] < array[j - 1]) {
-                swap(&array[j], &array[j - 1]);
-            }
-        }
-    }
-}
+void b_sort(datatype* array, int array_size);
 
-void print(int* array, int array_size) {
-    for (int i = 0; i < array_size; i++) {
-        printf("%d ", array[i]);
-    }
-    printf("\n");
-}
+void print(int* array, int array_size);
 
 #endif  // SORTING_BUBBLE_SORT_BUBBLE_SORT_H_

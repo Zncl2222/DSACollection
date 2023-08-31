@@ -1,7 +1,9 @@
 // Copyright 2022 Zncl2222
 
 #include <gtest/gtest.h>
+extern "C" {
 #include "link_list.h"
+}
 
 
 class LinkListTest : public ::testing::Test {

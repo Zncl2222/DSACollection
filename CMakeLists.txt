@@ -11,17 +11,17 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Set compiler flags for coverage
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fcommon -fprofile-arcs -ftest-coverage")
 
 # Set output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/test)
 set(CTEST_COVERAGE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/coverage")
 
 # Include directories
-include_directories(link_list)
+add_subdirectory(link_list)
 include_directories(binary_tree)
 include_directories(stack)
-include_directories(sorting/bubble_sort)
+add_subdirectory(sorting/bubble_sort)
 
 
 # Define your source files
@@ -58,12 +58,12 @@ add_executable(unittest_link_queue ${LINK_QUEUE_TEST_SOURCES})
 add_executable(unittest_bubble_sort ${BUBBLE_SORT_TEST_SOURCES})
 
 # Link Google Test and your project's code
-target_link_libraries(unittest_link_list PRIVATE gtest_main)
+target_link_libraries(unittest_link_list PRIVATE gtest_main link_list gcov)
 target_link_libraries(unittest_binary_tree PRIVATE gtest_main)
 target_link_libraries(unittest_link_stack PRIVATE gtest_main)
 target_link_libraries(unittest_sq_stack PRIVATE gtest_main)
 target_link_libraries(unittest_link_queue PRIVATE gtest_main)
-target_link_libraries(unittest_bubble_sort PRIVATE gtest_main)
+target_link_libraries(unittest_bubble_sort PRIVATE gtest_main bubble_sort gcov)
 
 # Define tests using CTest
 add_test(NAME unittest_link_list COMMAND unittest_link_list)
