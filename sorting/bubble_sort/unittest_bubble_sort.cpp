@@ -1,6 +1,8 @@
 // Copyright 2022 Zncl2222
 #include <gtest/gtest.h>
+extern "C" {
 #include "bubble_sort.h"
+}
 
 TEST(BubbleSortTest, SortsArrayCorrectly) {
     datatype arr[] = {5, 2, 9, 1, 5};
