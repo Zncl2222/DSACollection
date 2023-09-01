@@ -13,53 +13,16 @@ struct TreeNode {
     struct TreeNode* right;
 };
 
-struct TreeNode* create_binary_tree_recursive(datatype arr[], int idx, int size) {
-    if (idx >= size || arr[idx] == -1) {
-        return NULL;
-    }
+struct TreeNode* create_binary_tree_recursive(datatype arr[], int idx, int size);
 
-    struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
-    root->val = arr[idx];
-    root->left = create_binary_tree_recursive(arr, 2 * idx + 1, size);
-    root->right = create_binary_tree_recursive(arr, 2 * idx + 2, size);
+struct TreeNode* create_binary_tree(datatype arr[], int size);
 
-    return root;
-}
+void free_binary_tree(struct TreeNode* root);
 
-struct TreeNode* create_binary_tree(datatype arr[], int size) {
-    return create_binary_tree_recursive(arr, 0, size);
-}
+void preordertraverse(struct TreeNode* root);
 
-void free_binary_tree(struct TreeNode* root) {
-    if (root == NULL) return;
+void inordertraverse(struct TreeNode* root);
 
-    free_binary_tree(root->left);
-    free_binary_tree(root->right);
-    free(root);
-}
-
-void preordertraverse(struct TreeNode* root) {
-    if (root == NULL) return;
-
-    printf("Value = %d\n", root->val);
-    preordertraverse(root->left);
-    preordertraverse(root->right);
-}
-
-void inordertraverse(struct TreeNode* root) {
-    if (root == NULL) return;
-
-    inordertraverse(root->left);
-    printf("Value = %d\n", root->val);
-    inordertraverse(root->right);
-}
-
-void postordertraverse(struct TreeNode* root) {
-    if (root == NULL) return;
-
-    postordertraverse(root->left);
-    postordertraverse(root->right);
-    printf("Value = %d\n", root->val);
-}
+void postordertraverse(struct TreeNode* root);
 
 #endif  // BINARY_TREE_BINARY_TREE_H_

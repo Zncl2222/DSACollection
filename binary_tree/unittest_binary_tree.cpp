@@ -1,6 +1,8 @@
 // Copyright 2022 Zncl2222
 #include <gtest/gtest.h>
+extern "C" {
 #include "binary_tree.h"
+}
 
 class BinaryTreeTest : public ::testing::Test {
  protected:

@@ -1,0 +1,2 @@
+project(binary_tree)
+add_library(binary_tree binary_tree.c)
