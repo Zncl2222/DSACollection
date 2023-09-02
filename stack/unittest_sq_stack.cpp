@@ -1,6 +1,8 @@
 // Copyright 2022 Zncl2222
 #include "gtest/gtest.h"
+extern "C" {
 #include "sequential_stack.h"
+}
 
 class SequentialStackTest : public testing::Test {
  protected:

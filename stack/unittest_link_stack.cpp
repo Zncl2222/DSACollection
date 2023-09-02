@@ -1,6 +1,8 @@
 // Copyright 2022 Zncl2222
 #include "gtest/gtest.h"
+extern "C" {
 #include "link_stack.h"
+}
 
 // Test fixture for the LinkStack
 class LinkStackTest : public testing::Test {
