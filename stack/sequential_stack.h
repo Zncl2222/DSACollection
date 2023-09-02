@@ -15,52 +15,20 @@ struct Stack {
     datatype top;
 } Stack;
 
-void create_stack_random(struct Stack *S) {
-    for (int i = 0; i < MAX_SIZE; i++) {
-        S->data[i] = rand() % 100 + 1;  // NOLINT
-    }
-    S->top = MAX_SIZE - 1;
-}
+void create_stack_random(struct Stack *S);
 
-void init_stack(struct Stack *S) { S->top = -1; }
+void init_stack(struct Stack *S);
 
-bool is_empty(struct Stack *S) {
-    if (S->top == -1)
-        return true;
-    else
-        return false;
-}
+bool is_empty(struct Stack *S);
 
-datatype get_top(struct Stack *S) { return S->top; }
+datatype get_top(struct Stack *S);
 
-void stack_push(struct Stack *S, datatype value) {
-    if (S->top == MAX_SIZE - 1) {
-        printf("ERROR: Stack is full\n");
-    } else {
-        S->top++;
-        S->data[S->top] = value;
-    }
-}
+void stack_push(struct Stack *S, datatype value);
 
-void stack_pop(struct Stack *S) {
-    if (S->top == -1) {
-        printf("ERROR\n");
-    } else {
-        S->top--;
-    }
-}
+void stack_pop(struct Stack *S);
 
-int stack_length(struct Stack *S) { return S->top; }
+int stack_length(struct Stack *S);
 
-void stack_traverse(struct Stack *S) {
-    if (S->top == -1) {
-        printf("Stack is Empty\n");
-    } else {
-        for (int i = 0; i < S->top; i++) {
-            printf("%d ", S->data[i]);
-        }
-        printf("\nThe idx of top is : %d\n", S->top);
-    }
-}
+void stack_traverse(struct Stack *S);
 
 #endif  // STACK_SEQUENTIAL_STACK_H_
