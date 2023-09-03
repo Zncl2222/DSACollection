@@ -21,6 +21,7 @@ set(CTEST_COVERAGE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/coverage")
 add_subdirectory(link_list)
 add_subdirectory(binary_tree)
 add_subdirectory(stack)
+add_subdirectory(queue)
 add_subdirectory(sorting/bubble_sort)
 
 
@@ -62,7 +63,7 @@ target_link_libraries(unittest_link_list PRIVATE gtest_main link_list gcov)
 target_link_libraries(unittest_binary_tree PRIVATE gtest_main binary_tree gcov)
 target_link_libraries(unittest_link_stack PRIVATE gtest_main link_stack gcov)
 target_link_libraries(unittest_sq_stack PRIVATE gtest_main sequential_stack gcov)
-target_link_libraries(unittest_link_queue PRIVATE gtest_main)
+target_link_libraries(unittest_link_queue PRIVATE gtest_main link_queue gcov)
 target_link_libraries(unittest_bubble_sort PRIVATE gtest_main bubble_sort gcov)
 
 # Define tests using CTest

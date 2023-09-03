@@ -1,6 +1,8 @@
 // Copyright 2022 Zncl2222
 #include <gtest/gtest.h>
+extern "C" {
 #include "link_queue.h"
+}
 
 class LinkQueueTest : public ::testing::Test {
  protected:
