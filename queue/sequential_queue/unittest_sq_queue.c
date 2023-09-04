@@ -5,6 +5,7 @@
 
 #include "Sequential_queue.h"
 
+
 int main() {
     SqQueue q;
 
