@@ -46,6 +46,10 @@ set(LINK_QUEUE_TEST_SOURCES
     queue/link_queue/unittest_link_queue.cpp
 )
 
+set(SQ_QUEUE_TEST_SOURCES
+    queue/sequential_queue/unittest_sequential_queue.cpp
+)
+
 set(BUBBLE_SORT_TEST_SOURCES
     sorting/bubble_sort/unittest_bubble_sort.cpp
 )
@@ -56,6 +60,7 @@ add_executable(unittest_binary_tree ${BINARY_TREE_TEST_SOURCES})
 add_executable(unittest_link_stack ${LINK_STACK_TEST_SOURCES})
 add_executable(unittest_sq_stack ${SQ_STACK_TEST_SOURCES})
 add_executable(unittest_link_queue ${LINK_QUEUE_TEST_SOURCES})
+add_executable(unittest_sq_queue ${SQ_QUEUE_TEST_SOURCES})
 add_executable(unittest_bubble_sort ${BUBBLE_SORT_TEST_SOURCES})
 
 # Link Google Test and your project's code
@@ -64,6 +69,7 @@ target_link_libraries(unittest_binary_tree PRIVATE gtest_main binary_tree gcov)
 target_link_libraries(unittest_link_stack PRIVATE gtest_main link_stack gcov)
 target_link_libraries(unittest_sq_stack PRIVATE gtest_main sequential_stack gcov)
 target_link_libraries(unittest_link_queue PRIVATE gtest_main link_queue gcov)
+target_link_libraries(unittest_sq_queue PRIVATE gtest_main sequential_queue gcov)
 target_link_libraries(unittest_bubble_sort PRIVATE gtest_main bubble_sort gcov)
 
 # Define tests using CTest
@@ -72,6 +78,7 @@ add_test(NAME unittest_binary_tree COMMAND unittest_binary_tree)
 add_test(NAME unittest_link_stack COMMAND unittest_link_stack)
 add_test(NAME unittest_sq_stack COMMAND unittest_sq_stack)
 add_test(NAME unittest_link_queue COMMAND unittest_link_queue)
+add_test(NAME unittest_sq_queue COMMAND unittest_sq_queue)
 add_test(NAME unittest_bubble_sort COMMAND unittest_bubble_sort)
 
 # Create a custom target for generating coverage reports
@@ -116,6 +123,13 @@ if(VALGRIND)
         --show-reachable=yes
         --error-exitcode=1
         $<TARGET_FILE:unittest_link_queue>
+        COMMAND ${VALGRIND}
+        --tool=memcheck
+        --leak-check=full
+        --track-origins=yes
+        --show-reachable=yes
+        --error-exitcode=1
+        $<TARGET_FILE:unittest_sq_queue>
         COMMAND ${VALGRIND}
         --tool=memcheck
         --leak-check=full

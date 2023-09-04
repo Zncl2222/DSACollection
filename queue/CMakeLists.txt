@@ -1,1 +1,2 @@
 add_subdirectory(link_queue)
+add_subdirectory(sequential_queue)
