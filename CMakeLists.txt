@@ -23,7 +23,7 @@ add_subdirectory(binary_tree)
 add_subdirectory(stack)
 add_subdirectory(queue)
 add_subdirectory(sorting/bubble_sort)
-
+add_subdirectory(sorting/heap_sort)
 
 # Define your source files
 set(LINK_LIST_TEST_SOURCES
@@ -54,6 +54,10 @@ set(BUBBLE_SORT_TEST_SOURCES
     sorting/bubble_sort/unittest_bubble_sort.cpp
 )
 
+set(HEAP_SORT_TEST_SOURCES
+    sorting/heap_sort/unittest_heap_sort.cpp
+)
+
 # Create the unittest executables
 add_executable(unittest_link_list ${LINK_LIST_TEST_SOURCES})
 add_executable(unittest_binary_tree ${BINARY_TREE_TEST_SOURCES})
@@ -62,6 +66,7 @@ add_executable(unittest_sq_stack ${SQ_STACK_TEST_SOURCES})
 add_executable(unittest_link_queue ${LINK_QUEUE_TEST_SOURCES})
 add_executable(unittest_sq_queue ${SQ_QUEUE_TEST_SOURCES})
 add_executable(unittest_bubble_sort ${BUBBLE_SORT_TEST_SOURCES})
+add_executable(unittest_heap_sort ${HEAP_SORT_TEST_SOURCES})
 
 # Link Google Test and your project's code
 target_link_libraries(unittest_link_list PRIVATE gtest_main link_list gcov)
@@ -71,6 +76,7 @@ target_link_libraries(unittest_sq_stack PRIVATE gtest_main sequential_stack gcov
 target_link_libraries(unittest_link_queue PRIVATE gtest_main link_queue gcov)
 target_link_libraries(unittest_sq_queue PRIVATE gtest_main sequential_queue gcov)
 target_link_libraries(unittest_bubble_sort PRIVATE gtest_main bubble_sort gcov)
+target_link_libraries(unittest_heap_sort PRIVATE gtest_main heap_sort gcov)
 
 # Define tests using CTest
 add_test(NAME unittest_link_list COMMAND unittest_link_list)
@@ -80,6 +86,7 @@ add_test(NAME unittest_sq_stack COMMAND unittest_sq_stack)
 add_test(NAME unittest_link_queue COMMAND unittest_link_queue)
 add_test(NAME unittest_sq_queue COMMAND unittest_sq_queue)
 add_test(NAME unittest_bubble_sort COMMAND unittest_bubble_sort)
+add_test(NAME unittest_heap_sort COMMAND unittest_heap_sort)
 
 # Create a custom target for generating coverage reports
 add_custom_target(coverage COMMAND ctest -T Coverage WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -137,5 +144,12 @@ if(VALGRIND)
         --show-reachable=yes
         --error-exitcode=1
         $<TARGET_FILE:unittest_bubble_sort>
+        COMMAND ${VALGRIND}
+        --tool=memcheck
+        --leak-check=full
+        --track-origins=yes
+        --show-reachable=yes
+        --error-exitcode=1
+        $<TARGET_FILE:unittest_heap_sort>
     )
 endif()

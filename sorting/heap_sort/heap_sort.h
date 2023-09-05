@@ -5,44 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void Swap(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+void Swap(int* a, int* b);
 
-void HeapAdjust(int* L, int curridx, int L_size) {
-    int temp, i;
+void HeapAdjust(int* L, int curridx, int L_size);
 
-    temp = L[curridx];
+void HeapSort(int* L, int L_size);
 
-    for (i = 2 * curridx + 1; i <= L_size; i = i * 2 + 1) {
-        if (i < L_size && L[i] < L[i + 1]) ++i;
-
-        if (temp > L[i]) break;
-        L[curridx] = L[i];
-        curridx = i;
-    }
-
-    L[curridx] = temp;
-}
-
-void HeapSort(int* L, int L_size) {
-    for (int i = L_size / 2 - 1; i >= 0; i--) {
-        HeapAdjust(L, i, L_size);
-    }
-
-    for (int i = L_size - 1; i > 0; i--) {
-        Swap(&L[0], &L[i]);
-        HeapAdjust(L, 0, i - 1);
-    }
-}
-
-void PrintArray(int* L, int L_size) {
-    for (int i = 0; i < L_size; i++) {
-        printf("%d ", L[i]);
-    }
-    printf("\n");
-}
+void PrintArray(int* L, int L_size);
 
 #endif  // SORTING_HEAP_SORT_HEAP_SORT_H_
