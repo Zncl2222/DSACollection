@@ -26,6 +26,7 @@ add_subdirectory(sorting/bubble_sort)
 add_subdirectory(sorting/heap_sort)
 add_subdirectory(sorting/quick_sort)
 add_subdirectory(sorting/selection_sort)
+include_directories(sorting/shell_sort)
 
 
 # Define your source files
@@ -69,6 +70,10 @@ set(SELECTION_SORT_TEST_SOURCES
     sorting/selection_sort/unittest_selection_sort.cpp
 )
 
+set(SHELL_SORT_TEST_SOURCES
+    sorting/shell_sort/unittest_shell_sort.cpp
+)
+
 # Create the unittest executables
 add_executable(unittest_link_list ${LINK_LIST_TEST_SOURCES})
 add_executable(unittest_binary_tree ${BINARY_TREE_TEST_SOURCES})
@@ -80,6 +85,7 @@ add_executable(unittest_bubble_sort ${BUBBLE_SORT_TEST_SOURCES})
 add_executable(unittest_heap_sort ${HEAP_SORT_TEST_SOURCES})
 add_executable(unittest_quick_sort ${QUICK_SORT_TEST_SOURCES})
 add_executable(unittest_selection_sort ${SELECTION_SORT_TEST_SOURCES})
+add_executable(unittest_shell_sort ${SHELL_SORT_TEST_SOURCES})
 
 # Link Google Test and your project's code
 target_link_libraries(unittest_link_list PRIVATE gtest_main link_list gcov)
@@ -92,6 +98,7 @@ target_link_libraries(unittest_bubble_sort PRIVATE gtest_main bubble_sort gcov)
 target_link_libraries(unittest_heap_sort PRIVATE gtest_main heap_sort gcov)
 target_link_libraries(unittest_quick_sort PRIVATE gtest_main quick_sort gcov)
 target_link_libraries(unittest_selection_sort PRIVATE gtest_main selection_sort gcov)
+target_link_libraries(unittest_shell_sort PRIVATE gtest_main gcov)
 
 # Define tests using CTest
 add_test(NAME unittest_link_list COMMAND unittest_link_list)
@@ -104,6 +111,7 @@ add_test(NAME unittest_bubble_sort COMMAND unittest_bubble_sort)
 add_test(NAME unittest_heap_sort COMMAND unittest_heap_sort)
 add_test(NAME unittest_quick_sort COMMAND unittest_quick_sort)
 add_test(NAME unittest_selection_sort COMMAND unittest_selection_sort)
+add_test(NAME unittest_shell_sort COMMAND unittest_shell_sort)
 
 # Create a custom target for generating coverage reports
 add_custom_target(coverage COMMAND ctest -T Coverage WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -182,5 +190,12 @@ if(VALGRIND)
         --show-reachable=yes
         --error-exitcode=1
         $<TARGET_FILE:unittest_selection_sort>
+        COMMAND ${VALGRIND}
+        --tool=memcheck
+        --leak-check=full
+        --track-origins=yes
+        --show-reachable=yes
+        --error-exitcode=1
+        $<TARGET_FILE:unittest_shell_sort>
     )
 endif()
