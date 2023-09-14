@@ -22,13 +22,7 @@ add_subdirectory(link_list)
 add_subdirectory(binary_tree)
 add_subdirectory(stack)
 add_subdirectory(queue)
-add_subdirectory(sorting/bubble_sort)
-add_subdirectory(sorting/heap_sort)
-add_subdirectory(sorting/quick_sort)
-add_subdirectory(sorting/selection_sort)
-include_directories(sorting/shell_sort)
-include_directories(sorting/insertion_sort)
-
+add_subdirectory(sorting)
 
 # Define your source files
 set(LINK_LIST_TEST_SOURCES
@@ -79,6 +73,19 @@ set(INSERTION_SORT_TEST_SOURCES
     sorting/insertion_sort/unittest_insertion_sort.cpp
 )
 
+set(TEST_TARGETS
+    link_list
+    binary_tree
+    link_stack
+    sq_stack
+    link_queue
+    sq_queue
+    bubble_sort
+    heap_sort
+    quick_sort
+    selection_sort
+)
+
 # Create the unittest executables
 add_executable(unittest_link_list ${LINK_LIST_TEST_SOURCES})
 add_executable(unittest_binary_tree ${BINARY_TREE_TEST_SOURCES})
@@ -94,30 +101,14 @@ add_executable(unittest_shell_sort ${SHELL_SORT_TEST_SOURCES})
 add_executable(unittest_insertion_sort ${SHELL_SORT_TEST_SOURCES})
 
 # Link Google Test and your project's code
-target_link_libraries(unittest_link_list PRIVATE gtest_main link_list gcov)
-target_link_libraries(unittest_binary_tree PRIVATE gtest_main binary_tree gcov)
-target_link_libraries(unittest_link_stack PRIVATE gtest_main link_stack gcov)
-target_link_libraries(unittest_sq_stack PRIVATE gtest_main sequential_stack gcov)
-target_link_libraries(unittest_link_queue PRIVATE gtest_main link_queue gcov)
-target_link_libraries(unittest_sq_queue PRIVATE gtest_main sequential_queue gcov)
-target_link_libraries(unittest_bubble_sort PRIVATE gtest_main bubble_sort gcov)
-target_link_libraries(unittest_heap_sort PRIVATE gtest_main heap_sort gcov)
-target_link_libraries(unittest_quick_sort PRIVATE gtest_main quick_sort gcov)
-target_link_libraries(unittest_selection_sort PRIVATE gtest_main selection_sort gcov)
+foreach(TEST_TARGET ${TEST_TARGETS})
+    target_link_libraries(unittest_${TEST_TARGET} PRIVATE gtest_main ${TEST_TARGET} gcov)
+    add_test(NAME unittest_${TEST_TARGET} COMMAND unittest_${TEST_TARGET})
+endforeach()
+
+# Define tests using CTest (These two codes implement in header so don't need to link source file)
 target_link_libraries(unittest_shell_sort PRIVATE gtest_main gcov)
 target_link_libraries(unittest_insertion_sort PRIVATE gtest_main gcov)
-
-# Define tests using CTest
-add_test(NAME unittest_link_list COMMAND unittest_link_list)
-add_test(NAME unittest_binary_tree COMMAND unittest_binary_tree)
-add_test(NAME unittest_link_stack COMMAND unittest_link_stack)
-add_test(NAME unittest_sq_stack COMMAND unittest_sq_stack)
-add_test(NAME unittest_link_queue COMMAND unittest_link_queue)
-add_test(NAME unittest_sq_queue COMMAND unittest_sq_queue)
-add_test(NAME unittest_bubble_sort COMMAND unittest_bubble_sort)
-add_test(NAME unittest_heap_sort COMMAND unittest_heap_sort)
-add_test(NAME unittest_quick_sort COMMAND unittest_quick_sort)
-add_test(NAME unittest_selection_sort COMMAND unittest_selection_sort)
 add_test(NAME unittest_shell_sort COMMAND unittest_shell_sort)
 add_test(NAME unittest_insertion_sort COMMAND unittest_insertion_sort)
 
@@ -125,7 +116,6 @@ add_test(NAME unittest_insertion_sort COMMAND unittest_insertion_sort)
 add_custom_target(coverage COMMAND ctest -T Coverage WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 find_program(VALGRIND "valgrind")
-
 if(VALGRIND)
     add_custom_target(memcheck
         COMMAND ${VALGRIND}
