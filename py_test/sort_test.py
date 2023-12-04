@@ -1,10 +1,10 @@
 import pytest
-from sorting.bubble_sort.bubble_sort import bubble_sort
-from sorting.selection_sort.selection_sort import selection_sort
-from sorting.shell_sort.shell_sort import shell_sort
-from sorting.insertion_sort.insertion_sort import insertion_sort
-from sorting.quick_sort.quick_sort import quick_sort
-from sorting.heap_sort.heap_sort import heap_sort
+from sorting.python.bubble_sort import bubble_sort
+from sorting.python.selection_sort import selection_sort
+from sorting.python.shell_sort import shell_sort
+from sorting.python.insertion_sort import insertion_sort
+from sorting.python.quick_sort import quick_sort
+from sorting.python.heap_sort import heap_sort
 
 
 @pytest.mark.parametrize(
