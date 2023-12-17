@@ -18,7 +18,9 @@ def create_link_list(nums: list):
 def delete_link_list(head: LinkNode):
     while head:
         head = head.next
-        del head
+        if head.next is None:
+            del head
+            break
 
 
 def print_link_list(head: LinkNode):
