@@ -1,6 +1,6 @@
 // Copyright 2023 Zncl2222
-#ifndef SORTING_INSERTION_SORT_INSERTION_SORT_HPP_
-#define SORTING_INSERTION_SORT_INSERTION_SORT_HPP_
+#ifndef SORTING_CPP_INSERTION_SORT_INSERTION_SORT_HPP_
+#define SORTING_CPP_INSERTION_SORT_INSERTION_SORT_HPP_
 
 #include <cstdio>
 #include <iostream>
@@ -32,4 +32,4 @@ void print_array(T data[], int len) {
     cout << endl;
 }
 
-#endif  // SORTING_INSERTION_SORT_INSERTION_SORT_HPP_
+#endif  // SORTING_CPP_INSERTION_SORT_INSERTION_SORT_HPP_
