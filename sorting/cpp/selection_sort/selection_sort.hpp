@@ -1,6 +1,6 @@
 // Copyright 2023 Zncl2222
-#ifndef SORTING_SELECTION_SORT_SELECTION_SORT_HPP_
-#define SORTING_SELECTION_SORT_SELECTION_SORT_HPP_
+#ifndef SORTING_CPP_SELECTION_SORT_SELECTION_SORT_HPP_
+#define SORTING_CPP_SELECTION_SORT_SELECTION_SORT_HPP_
 
 #include <iostream>
 #include <vector>
@@ -14,4 +14,4 @@ void selection_sort(T data[], int len);
 template <class T>
 void print_array(T data[], int len);
 
-#endif  // SORTING_SELECTION_SORT_SELECTION_SORT_HPP_
+#endif  // SORTING_CPP_SELECTION_SORT_SELECTION_SORT_HPP_

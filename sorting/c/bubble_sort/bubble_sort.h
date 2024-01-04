@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef SORTING_BUBBLE_SORT_BUBBLE_SORT_H_
-#define SORTING_BUBBLE_SORT_BUBBLE_SORT_H_
+#ifndef SORTING_C_BUBBLE_SORT_BUBBLE_SORT_H_
+#define SORTING_C_BUBBLE_SORT_BUBBLE_SORT_H_
 
 #include <stdio.h>
 
@@ -12,4 +12,4 @@ void b_sort(datatype* array, int array_size);
 
 void print(int* array, int array_size);
 
-#endif  // SORTING_BUBBLE_SORT_BUBBLE_SORT_H_
+#endif  // SORTING_C_BUBBLE_SORT_BUBBLE_SORT_H_

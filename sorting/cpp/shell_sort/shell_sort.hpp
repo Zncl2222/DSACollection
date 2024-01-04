@@ -1,6 +1,6 @@
 // Copyright 2023 Zncl2222
-#ifndef SORTING_SHELL_SORT_SHELL_SORT_HPP_
-#define SORTING_SHELL_SORT_SHELL_SORT_HPP_
+#ifndef SORTING_CPP_SHELL_SORT_SHELL_SORT_HPP_
+#define SORTING_CPP_SHELL_SORT_SHELL_SORT_HPP_
 
 #include <iostream>
 #include <vector>
@@ -23,4 +23,4 @@ void shell_sort(T data[], int len) {
     }
 }
 
-#endif  // SORTING_SHELL_SORT_SHELL_SORT_HPP_
+#endif  // SORTING_CPP_SHELL_SORT_SHELL_SORT_HPP_
