@@ -22,7 +22,8 @@ add_subdirectory(link_list)
 add_subdirectory(binary_tree)
 add_subdirectory(stack)
 add_subdirectory(queue)
-add_subdirectory(sorting)
+add_subdirectory(sorting/c)
+add_subdirectory(sorting/cpp)
 
 # Define your source files
 set(LINK_LIST_TEST_SOURCES
@@ -50,27 +51,27 @@ set(SQ_QUEUE_TEST_SOURCES
 )
 
 set(BUBBLE_SORT_TEST_SOURCES
-    sorting/bubble_sort/unittest_bubble_sort.cpp
+    sorting/c/bubble_sort/unittest_bubble_sort.cpp
 )
 
 set(HEAP_SORT_TEST_SOURCES
-    sorting/heap_sort/unittest_heap_sort.cpp
+    sorting/c/heap_sort/unittest_heap_sort.cpp
 )
 
 set(QUICK_SORT_TEST_SOURCES
-    sorting/quick_sort/unittest_quick_sort.cpp
+    sorting/c/quick_sort/unittest_quick_sort.cpp
 )
 
 set(SELECTION_SORT_TEST_SOURCES
-    sorting/selection_sort/unittest_selection_sort.cpp
+    sorting/cpp/selection_sort/unittest_selection_sort.cpp
 )
 
 set(SHELL_SORT_TEST_SOURCES
-    sorting/shell_sort/unittest_shell_sort.cpp
+    sorting/cpp/shell_sort/unittest_shell_sort.cpp
 )
 
 set(INSERTION_SORT_TEST_SOURCES
-    sorting/insertion_sort/unittest_insertion_sort.cpp
+    sorting/cpp/insertion_sort/unittest_insertion_sort.cpp
 )
 
 set(TEST_TARGETS
