@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef LINK_LIST_LINK_LIST_H_
-#define LINK_LIST_LINK_LIST_H_
+#ifndef LINK_LIST_C_LINK_LIST_H_
+#define LINK_LIST_C_LINK_LIST_H_
 
 #include <malloc.h>
 #include <stdio.h>
@@ -33,4 +33,4 @@ datatype get_element_idx(struct LinkList **L, datatype target_value);
 
 void traverse(struct LinkList **L);
 
-#endif  // LINK_LIST_LINK_LIST_H_
+#endif  // LINK_LIST_C_LINK_LIST_H_

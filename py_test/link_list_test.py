@@ -1,5 +1,5 @@
 import pytest
-from link_list.link_list import (
+from link_list.python.link_list import (
     create_link_list,
     delete_link_list,
     insert_link_node,

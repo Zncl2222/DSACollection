@@ -27,27 +27,27 @@ add_subdirectory(sorting/cpp)
 
 # Define your source files
 set(LINK_LIST_TEST_SOURCES
-    link_list/unittest_LinkList.cpp
+    link_list/c/unittest_LinkList.cpp
 )
 
 set(BINARY_TREE_TEST_SOURCES
-    binary_tree/unittest_binary_tree.cpp
+    binary_tree/c/unittest_binary_tree.cpp
 )
 
 set(LINK_STACK_TEST_SOURCES
-    stack/unittest_link_stack.cpp
+    stack/c/unittest_link_stack.cpp
 )
 
 set(SQ_STACK_TEST_SOURCES
-    stack/unittest_sq_stack.cpp
+    stack/c/unittest_sq_stack.cpp
 )
 
 set(LINK_QUEUE_TEST_SOURCES
-    queue/link_queue/unittest_link_queue.cpp
+    queue/c/unittest_link_queue.cpp
 )
 
 set(SQ_QUEUE_TEST_SOURCES
-    queue/sequential_queue/unittest_sequential_queue.cpp
+    queue/c/unittest_sequential_queue.cpp
 )
 
 set(BUBBLE_SORT_TEST_SOURCES
