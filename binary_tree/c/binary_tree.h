@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef BINARY_TREE_BINARY_TREE_H_
-#define BINARY_TREE_BINARY_TREE_H_
+#ifndef BINARY_TREE_C_BINARY_TREE_H_
+#define BINARY_TREE_C_BINARY_TREE_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,4 +25,4 @@ void inordertraverse(struct TreeNode* root);
 
 void postordertraverse(struct TreeNode* root);
 
-#endif  // BINARY_TREE_BINARY_TREE_H_
+#endif  // BINARY_TREE_C_BINARY_TREE_H_

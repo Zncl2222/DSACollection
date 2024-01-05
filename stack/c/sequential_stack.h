@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef STACK_SEQUENTIAL_STACK_H_
-#define STACK_SEQUENTIAL_STACK_H_
+#ifndef STACK_C_SEQUENTIAL_STACK_H_
+#define STACK_C_SEQUENTIAL_STACK_H_
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -31,4 +31,4 @@ int stack_length(struct Stack *S);
 
 void stack_traverse(struct Stack *S);
 
-#endif  // STACK_SEQUENTIAL_STACK_H_
+#endif  // STACK_C_SEQUENTIAL_STACK_H_

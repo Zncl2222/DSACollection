@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef STACK_LINK_STACK_H_
-#define STACK_LINK_STACK_H_
+#ifndef STACK_C_LINK_STACK_H_
+#define STACK_C_LINK_STACK_H_
 
 #include <malloc.h>
 #include <stdbool.h>
@@ -35,4 +35,4 @@ int stack_length(LinkStack* S);
 
 void stack_traverse(LinkStack* S);
 
-#endif  // STACK_LINK_STACK_H_
+#endif  // STACK_C_LINK_STACK_H_

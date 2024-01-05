@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef QUEUE_SEQUENTIAL_QUEUE_SEQUENTIAL_QUEUE_H_
-#define QUEUE_SEQUENTIAL_QUEUE_SEQUENTIAL_QUEUE_H_
+#ifndef QUEUE_C_SEQUENTIAL_QUEUE_H_
+#define QUEUE_C_SEQUENTIAL_QUEUE_H_
 
 #include <stdio.h>
 
@@ -27,4 +27,4 @@ datatype SqQueue_Getrear(SqQueue* q);
 
 void SqQueue_Traverse(SqQueue* q);
 
-#endif  // QUEUE_SEQUENTIAL_QUEUE_SEQUENTIAL_QUEUE_H_
+#endif  // QUEUE_C_SEQUENTIAL_QUEUE_H_

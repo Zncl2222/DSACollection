@@ -1,6 +1,6 @@
 // Copyright 2022 Zncl2222
-#ifndef QUEUE_LINK_QUEUE_LINK_QUEUE_H_
-#define QUEUE_LINK_QUEUE_LINK_QUEUE_H_
+#ifndef QUEUE_C_LINK_QUEUE_H_
+#define QUEUE_C_LINK_QUEUE_H_
 
 #include <stdio.h>
 
@@ -31,4 +31,4 @@ int lk_queue_size(LinkQueue* q);
 
 void lk_queue_traverse(LinkQueue* q);
 
-#endif  // QUEUE_LINK_QUEUE_LINK_QUEUE_H_
+#endif  // QUEUE_C_LINK_QUEUE_H_
