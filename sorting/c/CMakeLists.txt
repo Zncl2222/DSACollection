@@ -6,3 +6,6 @@ add_library(heap_sort heap_sort/heap_sort.c)
 
 project(bubble_sort)
 add_library(bubble_sort bubble_sort/bubble_sort.c)
+
+project(merge_sort)
+add_library(merge_sort merge_sort/merge_sort.c)

@@ -54,6 +54,10 @@ set(BUBBLE_SORT_TEST_SOURCES
     sorting/c/bubble_sort/unittest_bubble_sort.cpp
 )
 
+set(MERGE_SORT_TEST_SOURCES
+    sorting/c/merge_sort/unittest_merge_sort.cpp
+)
+
 set(HEAP_SORT_TEST_SOURCES
     sorting/c/heap_sort/unittest_heap_sort.cpp
 )
@@ -83,6 +87,7 @@ set(TEST_TARGETS
     sq_queue
     bubble_sort
     heap_sort
+    merge_sort
     quick_sort
     selection_sort
 )
@@ -100,6 +105,7 @@ add_executable(unittest_quick_sort ${QUICK_SORT_TEST_SOURCES})
 add_executable(unittest_selection_sort ${SELECTION_SORT_TEST_SOURCES})
 add_executable(unittest_shell_sort ${SHELL_SORT_TEST_SOURCES})
 add_executable(unittest_insertion_sort ${SHELL_SORT_TEST_SOURCES})
+add_executable(unittest_merge_sort ${MERGE_SORT_TEST_SOURCES})
 
 # Link Google Test and your project's code
 foreach(TEST_TARGET ${TEST_TARGETS})
@@ -203,5 +209,12 @@ if(VALGRIND)
         --show-reachable=yes
         --error-exitcode=1
         $<TARGET_FILE:unittest_insertion_sort>
+        COMMAND ${VALGRIND}
+        --tool=memcheck
+        --leak-check=full
+        --track-origins=yes
+        --show-reachable=yes
+        --error-exitcode=1
+        $<TARGET_FILE:unittest_merge_sort>
     )
 endif()
