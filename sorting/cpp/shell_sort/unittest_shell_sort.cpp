@@ -3,7 +3,7 @@
 #include "shell_sort.hpp"
 
 // Test case to check if the array is sorted in ascending order
-TEST(SelectionSortTest, AscendingOrder) {
+TEST(ShellSortTest, AscendingOrder) {
     int arr[] = {5, 2, 9, 1, 5};
     int expected[] = {1, 2, 5, 5, 9};
     int len = sizeof(arr) / sizeof(arr[0]);
@@ -16,7 +16,7 @@ TEST(SelectionSortTest, AscendingOrder) {
 }
 
 // Test case to check if the array is sorted in ascending order
-TEST(SelectionSortTest, AscendingOrder2) {
+TEST(ShellSortTest, AscendingOrder2) {
     int arr[] = {8, 4, 2, 7, 1};
     int expected[] = {1, 2, 4, 7, 8};
     int len = sizeof(arr) / sizeof(arr[0]);

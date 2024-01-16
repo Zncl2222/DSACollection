@@ -4,26 +4,24 @@
 
 // Test case to check if the array is sorted in ascending order
 TEST(InsertionSortTest, AscendingOrder) {
-    int arr[] = {5, 2, 9, 1, 5};
+    vector<int> arr{1, 2, 5, 5, 9};
     int expected[] = {1, 2, 5, 5, 9};
-    int len = sizeof(arr) / sizeof(arr[0]);
 
-    insertion_sort(arr, len);
+    insertion_sort<int>(arr);
 
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < arr.size(); i++) {
         ASSERT_EQ(arr[i], expected[i]);
     }
 }
 
 // Test case to check if the array is sorted in ascending order
 TEST(InsertionSortTest, AscendingOrder2) {
-    int arr[] = {8, 4, 2, 7, 1};
+    vector<int> arr{1, 2, 4, 7, 8};
     int expected[] = {1, 2, 4, 7, 8};
-    int len = sizeof(arr) / sizeof(arr[0]);
 
-    insertion_sort(arr, len);
+    insertion_sort<int>(arr);
 
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < arr.size(); i++) {
         ASSERT_EQ(arr[i], expected[i]);
     }
 }

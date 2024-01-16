@@ -11,25 +11,27 @@ using std::vector;
 using std::endl;
 
 template <typename T>
-void insertion_sort(T data[], int len) {
-    for (int i = 1; i < len; i++) {
-        T tmp = data[i];
+void insertion_sort(std::vector<T>& arr) {  // NOLINT
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        T key = arr[i];
         int j = i - 1;
 
-        while (tmp < data[j] && j >= 0) {
-            data[j + 1] = data[j];
-            j--;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            --j;
         }
-        data[j + 1] = tmp;
+
+        arr[j + 1] = key;
     }
 }
 
 template <typename T>
-void print_array(T data[], int len) {
-    for (int i = 0; i < len; i++) {
-        cout << data[i] << " ";
+void printArray(const std::vector<T>& arr) {
+    for (const auto& element : arr) {
+        std::cout << element << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 #endif  // SORTING_CPP_INSERTION_SORT_INSERTION_SORT_HPP_
