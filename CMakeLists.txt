@@ -25,60 +25,8 @@ add_subdirectory(queue)
 add_subdirectory(sorting/c)
 add_subdirectory(sorting/cpp)
 
-# Define your source files
-set(LINK_LIST_TEST_SOURCES
-    link_list/c/unittest_LinkList.cpp
-)
-
-set(BINARY_TREE_TEST_SOURCES
-    binary_tree/c/unittest_binary_tree.cpp
-)
-
-set(LINK_STACK_TEST_SOURCES
-    stack/c/unittest_link_stack.cpp
-)
-
-set(SQ_STACK_TEST_SOURCES
-    stack/c/unittest_sq_stack.cpp
-)
-
-set(LINK_QUEUE_TEST_SOURCES
-    queue/c/unittest_link_queue.cpp
-)
-
-set(SQ_QUEUE_TEST_SOURCES
-    queue/c/unittest_sequential_queue.cpp
-)
-
-set(BUBBLE_SORT_TEST_SOURCES
-    sorting/c/bubble_sort/unittest_bubble_sort.cpp
-)
-
-set(MERGE_SORT_TEST_SOURCES
-    sorting/c/merge_sort/unittest_merge_sort.cpp
-)
-
-set(HEAP_SORT_TEST_SOURCES
-    sorting/c/heap_sort/unittest_heap_sort.cpp
-)
-
-set(QUICK_SORT_TEST_SOURCES
-    sorting/c/quick_sort/unittest_quick_sort.cpp
-)
-
-set(SELECTION_SORT_TEST_SOURCES
-    sorting/cpp/selection_sort/unittest_selection_sort.cpp
-)
-
-set(SHELL_SORT_TEST_SOURCES
-    sorting/cpp/shell_sort/unittest_shell_sort.cpp
-)
-
-set(INSERTION_SORT_TEST_SOURCES
-    sorting/cpp/insertion_sort/unittest_insertion_sort.cpp
-)
-
-set(TEST_TARGETS
+set(
+    TEST_TARGETS
     link_list
     binary_tree
     link_stack
@@ -92,32 +40,12 @@ set(TEST_TARGETS
     selection_sort
 )
 
-# Create the unittest executables
-add_executable(unittest_link_list ${LINK_LIST_TEST_SOURCES})
-add_executable(unittest_binary_tree ${BINARY_TREE_TEST_SOURCES})
-add_executable(unittest_link_stack ${LINK_STACK_TEST_SOURCES})
-add_executable(unittest_sq_stack ${SQ_STACK_TEST_SOURCES})
-add_executable(unittest_link_queue ${LINK_QUEUE_TEST_SOURCES})
-add_executable(unittest_sq_queue ${SQ_QUEUE_TEST_SOURCES})
-add_executable(unittest_bubble_sort ${BUBBLE_SORT_TEST_SOURCES})
-add_executable(unittest_heap_sort ${HEAP_SORT_TEST_SOURCES})
-add_executable(unittest_quick_sort ${QUICK_SORT_TEST_SOURCES})
-add_executable(unittest_selection_sort ${SELECTION_SORT_TEST_SOURCES})
-add_executable(unittest_shell_sort ${SHELL_SORT_TEST_SOURCES})
-add_executable(unittest_insertion_sort ${SHELL_SORT_TEST_SOURCES})
-add_executable(unittest_merge_sort ${MERGE_SORT_TEST_SOURCES})
-
 # Link Google Test and your project's code
 foreach(TEST_TARGET ${TEST_TARGETS})
     target_link_libraries(unittest_${TEST_TARGET} PRIVATE gtest_main ${TEST_TARGET} gcov)
     add_test(NAME unittest_${TEST_TARGET} COMMAND unittest_${TEST_TARGET})
 endforeach()
 
-# Define tests using CTest (These two codes implement in header so don't need to link source file)
-target_link_libraries(unittest_shell_sort PRIVATE gtest_main gcov)
-target_link_libraries(unittest_insertion_sort PRIVATE gtest_main gcov)
-add_test(NAME unittest_shell_sort COMMAND unittest_shell_sort)
-add_test(NAME unittest_insertion_sort COMMAND unittest_insertion_sort)
 
 # Create a custom target for generating coverage reports
 add_custom_target(coverage COMMAND ctest -T Coverage WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
