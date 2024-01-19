@@ -25,6 +25,9 @@ add_subdirectory(queue)
 add_subdirectory(sorting/c)
 add_subdirectory(sorting/cpp)
 
+# Please don remove the comment of "Set test targets" and "End of test targets"
+# This is for shell script and batch file to generate memcheck test targets
+# Set test targets
 set(
     TEST_TARGETS
     link_list
@@ -39,6 +42,7 @@ set(
     quick_sort
     selection_sort
 )
+# End of test targets
 
 # Link Google Test and your project's code
 foreach(TEST_TARGET ${TEST_TARGETS})
@@ -50,99 +54,23 @@ endforeach()
 # Create a custom target for generating coverage reports
 add_custom_target(coverage COMMAND ctest -T Coverage WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
+
+function(add_memcheck_target TEST_TARGET)
+    add_custom_target(memcheck_${TEST_TARGET}
+        COMMAND ${VALGRIND}
+        --tool=memcheck
+        --leak-check=full
+        --track-origins=yes
+        --show-reachable=yes
+        --error-exitcode=1
+        $<TARGET_FILE:unittest_${TEST_TARGET}>
+    )
+endfunction()
+
 find_program(VALGRIND "valgrind")
 if(VALGRIND)
-    add_custom_target(memcheck
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_link_list>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_binary_tree>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_link_stack>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_sq_stack>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_link_queue>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_sq_queue>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_bubble_sort>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_heap_sort>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_quick_sort>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_selection_sort>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_shell_sort>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_insertion_sort>
-        COMMAND ${VALGRIND}
-        --tool=memcheck
-        --leak-check=full
-        --track-origins=yes
-        --show-reachable=yes
-        --error-exitcode=1
-        $<TARGET_FILE:unittest_merge_sort>
-    )
+    # Call the function for each test target
+    foreach(TEST_TARGET ${TEST_TARGETS})
+        add_memcheck_target(${TEST_TARGET})
+    endforeach()
 endif()
