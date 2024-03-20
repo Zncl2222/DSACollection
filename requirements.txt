@@ -3,3 +3,4 @@ pytest-cov
 numpy
 scikit-learn
 matplotlib
+cvxopt

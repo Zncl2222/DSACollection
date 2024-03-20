@@ -12,16 +12,29 @@ class SVM:
         self.sv = None
         self.sv_y = None
         self.alpha = None
+        self.gamma = gamma
         self.b = 0
 
-    def fit(self, X, y):
-        n_samples, n_features = X.shape
+    def _kernel(self, x1: np.ndarray, x2: np.ndarray) -> np.ndarray:
+        if self.kernel == 'linear':
+            return np.dot(x1, x2)
+        elif self.kernel == 'rbf':
+            return np.exp(-self.gamma * np.linalg.norm(x1 - x2) ** 2)
+        else:
+            raise ValueError('kernel not supported')
 
-        # Gram matrix
+    def _compute_gram_matrix(self, X: np.ndarray, n_samples: int):
         K = np.zeros((n_samples, n_samples))
         for i in range(n_samples):
             for j in range(n_samples):
-                K[i, j] = self.kernel(X[i], X[j])
+                K[i, j] = self._kernel(X[i], X[j])
+        return K
+
+    def fit(self, X: np.array, y: np.array):
+        n_samples = X.shape[0]
+
+        # Gram matrix
+        K = self._compute_gram_matrix(X, n_samples)
 
         P = matrix(np.outer(y, y) * K)
         q = matrix(-np.ones(n_samples))
@@ -35,24 +48,21 @@ class SVM:
 
         # Support vectors have non zero lagrange multipliers
         sv = a > 1e-5
-        ind = np.arange(len(a))[sv]
+        sv_indices = np.arange(len(a))[sv]
         self.sv = X[sv]
         self.sv_y = y[sv]
         self.alpha = a[sv]
-        print(a)
 
-        self.b = 0
         for n in range(len(self.alpha)):
             self.b += self.sv_y[n]
-            self.b -= np.sum(self.alpha * self.sv_y * K[ind[n], sv])
+            self.b -= np.sum(self.alpha * self.sv_y * K[sv_indices[n], sv])
         self.b /= len(self.alpha)
 
         # Compute w
-        self.w = np.zeros(n_features)
-        for n in range(len(self.alpha)):
-            self.w += self.alpha[n] * self.sv_y[n] * self.sv[n]
+        if self.kernel == 'linear':
+            self.w = np.dot((self.alpha * self.sv_y), self.sv)
 
-    def project(self, X):
+    def project(self, X: np.ndarray) -> float:
         if self.kernel == 'linear':
             return np.dot(X, self.w) + self.b
         else:
@@ -60,41 +70,12 @@ class SVM:
             for i in range(len(X)):
                 s = 0
                 for a, sv_y, sv in zip(self.alpha, self.sv_y, self.sv):
-                    s += a * sv_y * self.kernel(X[i], sv)
+                    s += a * sv_y * self._kernel(X[i], sv)
                 y_predict[i] = s
             return y_predict + self.b
 
-    def predict(self, X):
+    def predict(self, X: np.ndarray) -> np.ndarray:
         return np.sign(self.project(X))
-
-    def plot_decision_boundary(
-        self, X: np.array, y: np.array, title: str = 'SVM Decision Boundary'
-    ) -> None:
-        h = 0.05  # step size in the mesh
-
-        # Create color maps
-        cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA'])
-        cmap_bold = ListedColormap(['#FF0000', '#00FF00'])
-
-        # Plot the decision boundary
-        x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-        y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-        Z = self.predict(np.c_[xx.ravel(), yy.ravel()])
-
-        # Put the result into a color plot
-        Z = Z.reshape(xx.shape)
-        figure = plt.figure()
-        plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
-
-        # Plot the training points
-        plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold, edgecolor='k', s=20)
-        plt.xlim(xx.min(), xx.max())
-        plt.ylim(yy.min(), yy.max())
-        plt.title(title)
-
-        plt.show()
-        figure.savefig('test.png', dpi=300)
 
 
 class SVMGD:
@@ -159,10 +140,6 @@ def plot_decision_boundary(
     plt.title(title)
 
 
-def linear_kernel(x1, x2):
-    return np.dot(x1, x2)
-
-
 if __name__ == "__main__":
     from sklearn.datasets import make_blobs
     from sklearn.model_selection import train_test_split
@@ -184,37 +161,30 @@ if __name__ == "__main__":
     X_test = scaler.transform(X_test)
 
     # Instantiate and train SVM classifier
-    # svm = SVM(learning_rate=0.01, n_iterations=3000)
-    # svm = SVMGD(learning_rate=0.01, n_iterations=3000)
-    svm = SVM(kernel=linear_kernel, gamma=1.5, C=0.1)
+    svm = SVM(kernel='rbf', gamma=0.5, C=0.5)
     svm.fit(X_train, y_train)
 
-    svc = SVC(kernel='linear', gamma=0.5, C=0.5)
+    svc = SVC(kernel='rbf', gamma=0.5, C=0.5)
     svc.fit(X_train, y_train)
 
     svmgd = SVMGD(learning_rate=0.01, n_iterations=3000)
     svmgd.fit(X_train, y_train)
 
+    # Predict
     predictions_svc = svc.predict(X_test)
-    # print(predictions)
-    print("Accuracy:", accuracy(y_test, predictions_svc))
-    plt.figure(1)
-    plot_decision_boundary(X_test, y_test, svc, title='SVM Decision Boundary')
+    print("Accuracy (svc):", accuracy(y_test, predictions_svc))
 
     # Predict
     predictions_svm = svm.predict(X_test)
-
-    print("Accuracy:", accuracy(y_test, predictions_svm))
+    print("Accuracy (svm):", accuracy(y_test, predictions_svm))
 
     # Predict
     predictions_svmgd = svmgd.predict(X_test)
+    print("Accuracy (svmgd):", accuracy(y_test, predictions_svmgd))
 
-    print("Accuracy:", accuracy(y_test, predictions_svmgd))
+    plt.figure(1)
+    plot_decision_boundary(X_test, y_test, svc, title='SVM Decision Boundary')
 
-    # Plot decision boundary for custom SVM
-    # svm.plot_decision_boundary(X_train, y_train, title='Custom SVM Decision Boundary')
-    # svm.plot_decision_boundary(X_test, y_test, title='Custom SVM Decision Boundary')
-    # svm.plot_decision_boundary(X_train, y_train, title='Custom SVM Decision Boundary')
     plt.figure(2)
     plot_decision_boundary(X_test, y_test, svm, title='Custom SVM Decision Boundary')
 
